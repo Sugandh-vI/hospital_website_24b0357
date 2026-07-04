@@ -129,3 +129,9 @@ if os.environ.get("RENDER"):
     DEBUG = False
     ALLOWED_HOSTS = ["*"]  # Tighten to your Render URL after first deploy
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    # Django 4.0+ requires CSRF_TRUSTED_ORIGINS for HTTPS form submissions
+    # (e.g. admin login). Without this, POST to /admin/login/ returns 403.
+    CSRF_TRUSTED_ORIGINS = config(
+        "CSRF_TRUSTED_ORIGINS",
+        default="https://hospital-website-24b0357.onrender.com",
+    ).split(",")
