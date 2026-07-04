@@ -155,7 +155,7 @@ class Testimonial(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=300)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
     excerpt = models.TextField()
     content = models.TextField()
     author = models.ForeignKey(
